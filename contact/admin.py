@@ -1,6 +1,7 @@
 from django.contrib import admin
 from contact import models
 
+
 @admin.register(models.Contact)
 class ContaticAdmin(admin.ModelAdmin):
     
@@ -11,3 +12,9 @@ class ContaticAdmin(admin.ModelAdmin):
     list_max_show_all = 200
     list_editable = "phone",
     list_display_links = 'id', 'first_name',
+
+
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id','name')
+    list_editable = ('name',)
