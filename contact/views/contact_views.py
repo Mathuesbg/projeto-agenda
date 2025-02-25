@@ -1,18 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
 from contact.models import Contact
 from django.db.models import Q
 
 
+
 def index(request):
 
-    contacts = Contact.objects.filter(show=True).order_by("-id")[:10]
+    contacts = Contact.objects.filter(show=True).order_by("-id")
+    paginator = Paginator(contacts, 10)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
     
     print(contacts.query)
 
     return render(
         request=request, 
         template_name="contact/index.html",
-        context={"contacts" : contacts, "title": 'Contatos -'}
+        context={
+            "page_objects" : page_object,
+            "title": 'Contatos -'}
         )
 
 
@@ -36,6 +43,7 @@ def search(request):
 
     if search_values == '':
         return redirect('index')
+    
 
     print(request.GET)
     contacts = Contact.objects.filter(
@@ -46,12 +54,16 @@ def search(request):
             show=True, 
             ).order_by("-id")
     
+    paginator = Paginator(contacts, 10)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
     print(contacts.query)
+
     return render(
         request=request, 
         template_name="contact/index.html",
         context={
-            "contacts" : contacts,
+            "page_objects" : page_object,
             "title": 'Contatos -',
             "search_text": search_values
             }
