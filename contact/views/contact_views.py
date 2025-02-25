@@ -45,7 +45,6 @@ def search(request):
         return redirect('index')
     
 
-    print(request.GET)
     contacts = Contact.objects.filter(
             Q(first_name__icontains=search_values)| 
             Q(last_name__icontains=search_values)|  
@@ -57,7 +56,6 @@ def search(request):
     paginator = Paginator(contacts, 10)
     page_number = request.GET.get('page')
     page_object = paginator.get_page(page_number)
-    print(contacts.query)
 
     return render(
         request=request, 
