@@ -63,6 +63,5 @@ def search(request):
         context={
             "page_objects" : page_object,
             "title": 'Contatos -',
-            "search_text": search_values
             }
         )

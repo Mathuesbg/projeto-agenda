@@ -3,7 +3,7 @@
         <span class="step-links">
             {% if page_objects.has_previous %}
 
-                <a href="?page=1"&q={{request.GET.q.strip}}>
+                <a href="?page=1&q={{request.GET.q.strip}}">
                     &laquo; first
                 </a>
 
@@ -26,7 +26,7 @@
                 <a href="?page={{ page_objects.paginator.num_pages }}&q={{request.GET.q.strip}}">
                     last &raquo;
                 </a>
-                
+
             {% endif %}
         </span>
     </div>
