@@ -9,9 +9,9 @@ def index(request):
     print(contacts.query)
 
     return render(
-        request, 
-        "contact/index.html",
-        {"contacts" : contacts}
+        request=request, 
+        template_name="contact/index.html",
+        context={"contacts" : contacts, "title": 'Contatos -'}
         )
 
 
@@ -20,8 +20,11 @@ def contact(request, contact_id):
     single_contact = get_object_or_404(
         Contact.objects.filter(pk=contact_id, show=True)
         )
+    title = f"{single_contact.first_name } {single_contact.last_name} -"
     return render(
-        request, 
-        "contact/contact.html",
-        {"contact" : single_contact}
+        request = request, 
+        template_name="contact/contact.html",
+        context={
+            "contact" : single_contact, 
+            "title": title}
         )
