@@ -2,11 +2,15 @@ from django.urls import path
 from contact import views
 
 
-appname = 'contact'
+app_name = 'contact'
 
 urlpatterns = [
-    path('<int:contact_id>/', views.contact, name='contact'),
     path('', views.index, name='index'),
     path('search/', views.search, name='search'),
+
+    #CRUD Contact
+    path('contact/<int:contact_id>/', views.contact, name='contact'),
+    path('contact/create/', views.create, name='create'),
+
     
 ]
