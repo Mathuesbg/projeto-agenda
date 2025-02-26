@@ -1,7 +1,7 @@
 <header class="header">
 
     <h1 class="header-heading">
-        <a href="{% url "index" %}" class="header-link">agenda</a>
+        <a href="{% url 'contact:index' %}" class="header-link">agenda</a>
     </h1>
 
     <nav class="menu">
@@ -16,7 +16,7 @@
     </nav>
 
     <div class="search">
-        <form action="{% url 'search' %}" method="get"> 
+        <form action="{% url 'contact:search' %}" method="get"> 
             <input type="text" class="search-input" placeholder="Search" id="search" name="q"
             value = "{{request.GET.q.strip}}">
         </form>
