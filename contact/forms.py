@@ -5,6 +5,8 @@ from django import forms
 
 
 class ContactForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
     
     first_name = forms.CharField(
         widget=forms.TextInput(
