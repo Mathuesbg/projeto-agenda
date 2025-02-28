@@ -12,7 +12,6 @@ def index(request):
     page_number = request.GET.get('page')
     page_object = paginator.get_page(page_number)
     
-    print(contacts.query)
 
     return render(
         request=request, 
