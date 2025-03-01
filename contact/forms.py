@@ -5,20 +5,14 @@ from django import forms
 
 
 class ContactForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-    
-    first_name = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'class': 'classe-a classe-b',
-                'placeholder': 'Aqui veio do init',
-            }
-    ),
-    label='Primeiro Nome',
-    help_text='Texto de ajuda para seu usuário',
-    )
 
+    picture = forms.ImageField(
+        widget=forms.FileInput(
+            attrs= {
+                'accept':"image/*"
+                }
+        )
+    )
 
     class Meta():
 
@@ -29,12 +23,10 @@ class ContactForm(forms.ModelForm):
              'phone',
              'email',
              'description',
-             'category'
+             'category',
+             'picture'
+
              )
-        
-        widgets = {
-            
-        }
         
     def clean(self):
         cleaned_data = self.cleaned_data
