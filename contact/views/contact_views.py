@@ -6,8 +6,11 @@ from django.db.models import Q
 
 
 def index(request):
-
-    contacts = Contact.objects.filter(show=True).order_by("-id")
+    print(request.user)
+    if request.user.is_anonymous:
+        contacts = []
+    else:
+        contacts = Contact.objects.filter(show=True, owner=request.user).order_by("-id")
     paginator = Paginator(contacts, 10)
     page_number = request.GET.get('page')
     page_object = paginator.get_page(page_number)
