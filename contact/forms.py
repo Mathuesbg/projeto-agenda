@@ -60,8 +60,8 @@ class ContactForm(forms.ModelForm):
    
 class RegisterForm(UserCreationForm):
 
-    first_name =  forms.CharField( max_length=3, required=True)
-    last_name =  forms.CharField( max_length=3, required=True)
+    first_name =  forms.CharField( min_length=3, required=True)
+    last_name =  forms.CharField( min_length=3, required=True)
     email =  forms.EmailField(required=True)
 
     class Meta:
